@@ -1,0 +1,67 @@
+<view id="container">
+  <view id="top">
+    <view id="month">{{month}}</view>
+    <view id="year">{{year}}</view>
+    <view id="showWeek">
+      <view class="week" style='color:red;'>日</view>
+      <view class="week">一</view>
+      <view class="week">二</view>
+      <view class="week">三</view>
+      <view class="week">四</view>
+      <view class="week">五</view>
+      <view class="week">六</view>
+    </view>
+  </view>
+  <view id="body">
+    <view class="row">
+      <view id = 'd1' class = 'day'>{{day[0]}}</view>
+      <view id = 'd2' class = 'day'>{{day[1]}}</view>
+      <view id = 'd3' class = 'day'>{{day[2]}}</view>
+      <view id = 'd4' class = 'day'>{{day[3]}}</view>
+      <view id = 'd5' class = 'day'>{{day[4]}}</view>
+      <view id = 'd6' class = 'day'>{{day[5]}}</view>
+      <view id = 'd7' class = 'day'>{{day[6]}}</view>
+    </view>
+    <view class="row">
+      <view id = 'd8' class = 'day'>{{day[7]}}</view>
+      <view id = 'd9' class = 'day'>{{day[8]}}</view>
+      <view id = 'd10' class = 'day'>{{day[9]}}</view>
+      <view id = 'd11' class = 'day'>{{day[10]}}</view>
+      <view id = 'd12' class = 'day'>{{day[11]}}</view>
+      <view id = 'd13' class = 'day'>{{day[12]}}</view>
+      <view id = 'd14' class = 'day'>{{day[13]}}</view>
+    </view>
+    <view class="row">
+      <view id = 'd15' class = 'day'>{{day[14]}}</view>
+      <view id = 'd16' class = 'day'>{{day[15]}}</view>
+      <view id = 'd17' class = 'day'>{{day[16]}}</view>
+      <view id = 'd18' class = 'day'>{{day[17]}}</view>
+      <view id = 'd19' class = 'day'>{{day[18]}}</view>
+      <view id = 'd20' class = 'day'>{{day[19]}}</view>
+      <view id = 'd21' class = 'day'>{{day[20]}}</view>
+    </view>
+    <view class="row">
+      <view id = 'd21' class = 'day'>{{day[20]}}</view>
+      <view id = 'd22' class = 'day'>{{day[21]}}</view>
+      <view id = 'd23' class = 'day'>{{day[22]}}</view>
+      <view id = 'd24' class = 'day'>{{day[23]}}</view>
+      <view id = 'd25' class = 'day'>{{day[24]}}</view>
+      <view id = 'd26' class = 'day'>{{day[25]}}</view>
+      <view id = 'd27' class = 'day'>{{day[26]}}</view>
+      <view id = 'd28' class = 'day'>{{day[27]}}</view>
+    </view>
+    <view class="row">
+      <view id = 'd29' class = 'day'>{{day[28]}}</view>
+      <view id = 'd30' class = 'day'>{{day[29]}}</view>
+      <view id = 'd31' class = 'day'>{{day[30]}}</view>
+      <view id = 'd32' class = 'day'>{{day[31]}}</view>
+      <view id = 'd33' class = 'day'>{{day[32]}}</view>
+      <view id = 'd34' class = 'day'>{{day[33]}}</view>
+      <view id = 'd35' class = 'day'>{{day[34]}}</view>
+    </view>
+  </view>
+  <view id="footer">
+  	<view class="choose">日程表</view>
+  	<view class="choose">任务</view>
+  </view>
+</view>
