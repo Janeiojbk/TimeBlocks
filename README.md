@@ -1,6 +1,6 @@
 # Wafer2 快速开发 Demo - PHP
 
-本仓库是最简版的 Wafer2 开发套件，建议配合腾讯云微信小程序开发者工具解决方案一起使用。适用于想要使用 Wafer SDK 开发的开发者，Demo 对 SDK 进行了
+本仓库是最简版的 Wafer2 开发套件，建议配合腾讯云微信小程序开发者工具解决方案一起使用。适用于想要使用 Wafer SDK 开发者，Demo 对 SDK 进行了
 
 **登录接口切换公告：https://github.com/tencentyun/wafer2-quickstart/issues/10**
 
