@@ -11,15 +11,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-<<<<<<< HEAD
 	"libVersion": "2.2.0",
 	"appid": "wx31d5c89c4e97ed8d",
 	"projectname": "timeblock",
-=======
-	"libVersion": "2.0.4",
-	"appid": "wxfaab1f688f320796",
-	"projectname": "%E6%97%B6%E9%97%B4%E7%A7%AF%E6%9C%A8",
->>>>>>> d0e973ff71b3ce085fc28c973bfc08c6cc6ffeb2
 	"isGameTourist": false,
 	"condition": {
 		"search": {
