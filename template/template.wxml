@@ -1,0 +1,200 @@
+<!-- 由于不同day间css控制差异过大，用wx:for相当困难，故最有效率的办法就是这样罗列出所有的day格以作为模板，以下由python代码生成 -->
+<template name="calendar">
+	<scroll-view scroll-y style = "height: 960rpx;">
+	<view class="{{smallSwitch?'smallrow':'row'}}" style = "height: {{smallSwitch?(dutyListFir.height>3? dutyListFir.height*35 + 45: 160):(dutyListFir.height>4? dutyListFir.height*35 + 45: 192)}}rpx;">
+  		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '1' style="{{day[0].isMonth?'color:rgb(239,50,6);':'color:rgb(247,168,168);'}}">
+  			<view class = "{{isToday+1 == day[0].day&&day[0].isMonth&&month == tomonth&&year == toyear?'todaya':''}}">{{day[0].day}}</view>
+ 		</view>
+  		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '2' style="{{day[1].isMonth?'color:black;':'color:gray;'}}">
+  			<view class = "{{isToday+1 == day[1].day&&day[1].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[1].day}}</view>
+ 		</view>
+ 		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '3' style="{{day[2].isMonth?'color:black;':'color:gray;'}}">
+  			<view class = "{{isToday+1 == day[2].day&&day[2].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[2].day}}</view>
+  		</view>
+  		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '4' style="{{day[3].isMonth?'color:black;':'color:gray;'}}">
+  			<view class = "{{isToday+1 == day[3].day&&day[3].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[3].day}}</view>
+ 		 </view>
+  		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '5' style="{{day[4].isMonth?'color:black;':'color:gray;'}}">
+  			<view class = "{{isToday+1 == day[4].day&&day[4].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[4].day}}</view>
+  		</view>
+ 		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '6' style="{{day[5].isMonth?'color:black;':'color:gray;'}}">
+  			<view class = "{{isToday+1 == day[5].day&&day[5].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[5].day}}</view>
+  		</view>
+  		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '7' style="{{day[6].isMonth?'color:black;':'color:gray;'}}">
+  			<view class = "{{isToday+1 == day[6].day&&day[6].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[6].day}}</view>
+		</view>
+		<!--日程行，通过遍历列表完成-->
+		<view class="dutyRow">
+			<view wx:for="{{dutyListFir.list}}" wx:key='item.name' style="float:left; background:{{item.color}};margin-left:{{14.16*item.position}}%;width:{{item.size*(13.4+item.size*0.15)}}%;" class = 'duty'>{{item.name}}
+			</view>
+		</view>
+	</view>
+	<view class="{{smallSwitch?'smallrow':'row'}}" style = "height: {{smallSwitch?(dutyListSec.height>3? dutyListSec.height*35 + 45: 160):(dutyListSec.height>4? dutyListSec.height*35 + 45: 192)}}rpx;">
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '8' style="{{day[7].isMonth?'color:rgb(239,50,6);':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[7].day&&day[7].isMonth&&month == tomonth&&year == toyear?'todaya':''}}">{{day[7].day}}</view>
+		</view>
+  		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '9' style="{{day[8].isMonth?'color:black;':'color:gray;'}}">
+  			<view class = "{{isToday+1 == day[8].day&&day[8].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[8].day}}</view>
+  		</view>
+  		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '10' style="{{day[9].isMonth?'color:black;':'color:gray;'}}">
+  			<view class = "{{isToday+1 == day[9].day&&day[9].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[9].day}}</view>
+  		</view>
+  		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '11' style="{{day[10].isMonth?'color:black;':'color:gray;'}}">
+  			<view class = "{{isToday+1 == day[10].day&&day[10].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[10].day}}</view>
+  		</view>
+  		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '12' style="{{day[11].isMonth?'color:black;':'color:gray;'}}">
+  			<view class = "{{isToday+1 == day[11].day&&day[11].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[11].day}}</view>
+  		</view>
+  		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '13' style="{{day[12].isMonth?'color:black;':'color:gray;'}}">
+  			<view class = "{{isToday+1 == day[12].day&&day[12].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[12].day}}</view>
+  		</view>
+  		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '14' style="{{day[13].isMonth?'color:black;':'color:gray;'}}">
+  			<view class = "{{isToday+1 == day[13].day&&day[13].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[13].day}}</view>
+  		</view>
+  		<view class="dutyRow">
+  			<view wx:for="{{dutyListSec.list}}" wx:key='item.name' style="float:left; background:{{item.color}};margin-left:{{14.16*item.position}}%;width:{{item.size*(13.4+item.size*0.15)}}%;" class = 'duty'>{{item.name}}
+  			</view>
+  		</view>
+	</view>
+	<view class="{{smallSwitch?'smallrow':'row'}}" style = "height: {{smallSwitch?(dutyListThr.height>3? dutyListThr.height*35 + 45: 160):(dutyListThr.height>4? dutyListThr.height*35 + 45: 192)}}rpx;">
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '15' style="{{day[14].isMonth?'color:rgb(239,50,6);':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[14].day&&day[14].isMonth&&month == tomonth&&year == toyear?'todaya':''}}">{{day[14].day}}</view>
+		</view>
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '16' style="{{day[15].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[15].day&&day[15].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[15].day}}</view>
+		</view>
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '17' style="{{day[16].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[16].day&&day[16].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[16].day}}</view>
+		</view>
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '18' style="{{day[17].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[17].day&&day[17].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[17].day}}</view>
+		</view>
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '19' style="{{day[18].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[18].day&&day[18].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[18].day}}</view>
+		</view>
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '20' style="{{day[19].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[19].day&&day[19].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[19].day}}</view>
+		</view>
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '21' style="{{day[20].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[20].day&&day[20].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[20].day}}</view>
+		</view>
+		<view class="dutyRow">
+			<view wx:for="{{dutyListThr.list}}" wx:key='item.name' style="float:left; background:{{item.color}};margin-left:{{14.16*item.position}}%;width:{{item.size*(13.4+item.size*0.15)}}%;" class = 'duty'>{{item.name}}
+			</view>
+		</view>
+	</view>
+	<view class="{{smallSwitch?'smallrow':'row'}}" style = "height: {{smallSwitch?(dutyListFor.height>3? dutyListFor.height*35 + 45: 160):(dutyListFor.height>4? dutyListFor.height*35 + 45: 192)}}rpx;">
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '22' style="{{day[21].isMonth?'color:rgb(239,50,6);':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[21].day&&day[21].isMonth&&month == tomonth&&year == toyear?'todaya':''}}">{{day[21].day}}</view>
+		</view>
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '23' style="{{day[22].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[22].day&&day[22].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[22].day}}</view>
+		</view>
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '24' style="{{day[23].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[23].day&&day[23].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[23].day}}</view>
+		</view>
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '25' style="{{day[24].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[24].day&&day[24].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[24].day}}</view>
+		</view>
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '26' style="{{day[25].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[25].day&&day[25].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[25].day}}</view>
+		</view>
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '27' style="{{day[26].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[26].day&&day[26].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[26].day}}</view>
+		</view>
+		<view class = "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '28' style="{{day[27].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[27].day&&day[27].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[27].day}}</view>
+		</view>
+		<view class="dutyRow">
+			<view wx:for="{{dutyListFor.list}}" wx:key='item.name' style="float:left; background:{{item.color}};margin-left:{{14.16*item.position}}%;width:{{item.size*(13.4+item.size*0.15)}}%;" class = 'duty'>{{item.name}}
+			</view>
+		</view>
+	</view>
+	<view class="{{smallSwitch?'smallrow':'row'}}" style = "height: {{smallSwitch?(dutyListFiv.height>3? dutyListFiv.height*35 + 45: 160):(dutyListFiv.height>4? dutyListFiv.height*35 + 45: 192)}}rpx;">
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '29' style="{{day[28].isMonth?'color:rgb(239,50,6);':'color:rgb(247,168,168);;'}}">
+			<view class = "{{isToday+1 == day[28].day&&day[28].isMonth&&month == tomonth&&year == toyear?'todaya':''}}">{{day[28].day}}</view>
+		</view>
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '30' style="{{day[29].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[29].day&&day[29].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[29].day}}</view>
+		</view>
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '31' style="{{day[30].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[30].day&&day[30].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[30].day}}</view>
+		</view>
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '32' style="{{day[31].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[31].day&&day[31].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[31].day}}</view>
+		</view>
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '33' style="{{day[32].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[32].day&&day[32].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[32].day}}</view>
+		</view>
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '34' style="{{day[33].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[33].day&&day[33].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[33].day}}</view>
+		</view>
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '35' style="{{day[34].isMonth?'color:black;':'color:gray' }}">
+			<view class = "{{isToday+1 == day[34].day&&day[34].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[34].day}}</view>
+		</view>
+		<view class="dutyRow">
+			<view wx:for="{{dutyListFiv.list}}" wx:key='item.name' style="float:left; background:{{item.color}};margin-left:{{14.16*item.position}}%;width:{{item.size*(13.4+item.size*0.15)}}%;" class = 'duty'>{{item.name}}
+			</view>
+		</view>
+	</view>
+	<view wx:if="{{smallSwitch}}" class="{{smallSwitch?'smallrow':'row'}}" style = "height: {{smallSwitch?(dutyListSix.height>3? dutyListSix.height*35 + 45: 160):(dutyListSix.height>4? dutyListSix.height*35 + 45: 192)}}rpx;">
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '36' style="{{day[35].isMonth?'color:rgb(239,50,6);':'color: rgb(247,168,168);'}}">
+			<view class = "{{isToday+1 == day[35].day&&day[35].isMonth&&month == tomonth&&year == toyear?'todaya':''}}">{{day[35].day}}</view>
+		</view>
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '37' style="{{day[36].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[36].day&&day[36].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[36].day}}</view>
+		</view>
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '38' style="{{day[37].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[37].day&&day[37].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[37].day}}</view>
+		</view>
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '39' style="{{day[38].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[38].day&&day[38].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[38].day}}</view>
+		</view>
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '40' style="{{day[39].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[39].day&&day[39].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[39].day}}</view>
+		</view>
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '41' style="{{day[40].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[40].day&&day[40].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[40].day}}</view>
+		</view>
+		<view class =  "day" bindtap = "powerDrawerDetail" hover-class = "dayChoose" data-statu="open" data-day = '42' style="{{day[41].isMonth?'color:black;':'color:gray;'}}">
+			<view class = "{{isToday+1 == day[41].day&&day[41].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[41].day}}</view>
+		</view>
+		<view class="dutyRow">
+			<view wx:for="{{dutyListSix.list}}" wx:key='item.name' style="float:left; background:{{item.color}};margin-left:{{14.16*item.position}}%;width:{{item.size*(13.4+item.size*0.15)}}%;" class = 'duty'>{{item.name}}
+			</view>
+		</view>
+	</view>
+</scroll-view>
+</template>
+
+<template name='rowtemp'>
+  	<view class="row" style = "height: {{dutyList.height>4? dutyList.height*35 + 45: 192}}rpx;">
+    <view class = "day" style="{{day[0].isMonth?'color:rgb(239,50,6);':'color:rgb(247,168,168);'}}">
+      <view class = "{{isToday+1 == day[0].day&&day[0].isMonth&&month == tomonth&&year == toyear?'todaya':''}}">{{day[0].day}}</view>
+    </view>
+    <view class = "day" style="{{day[1].isMonth?'color:black;':'color:gray;'}}">
+      <view class = "{{isToday+1 == day[1].day&&day[1].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[1].day}}</view>
+    </view>
+    <view class = "day" style="{{day[2].isMonth?'color:black;':'color:gray;'}}">
+      <view class = "{{isToday+1 == day[2].day&&day[2].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[2].day}}</view>
+    </view>
+    <view class = "day" style="{{day[3].isMonth?'color:black;':'color:gray;'}}">
+      <view class = "{{isToday+1 == day[3].day&&day[3].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[3].day}}</view>
+    </view>
+    <view class = "day" style="{{day[4].isMonth?'color:black;':'color:gray;'}}">
+      <view class = "{{isToday+1 == day[4].day&&day[4].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[4].day}}</view>
+    </view>
+    <view class = "day" style="{{day[5].isMonth?'color:black;':'color:gray;'}}">
+      <view class = "{{isToday+1 == day[5].day&&day[5].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[5].day}}</view>
+    </view>
+    <view class = "day" style="{{day[6].isMonth?'color:black;':'color:gray;'}}">
+      <view class = "{{isToday+1 == day[6].day&&day[6].isMonth&&month == tomonth&&year == toyear?'todayb':''}}">{{day[6].day}}</view>
+    </view>
+    <!--日程行，通过遍历列表完成-->
+    <view>
+      <view class = 'duty' wx:for="{{dutyList.list}}" wx:key='item.name' style="float:left; background:{{item.color}};margin-left:{{14.16*item.position}}%;width:{{item.size*(13.4+item.size*0.15)}}%;">
+      	{{item.name}}
+      </view>
+    </view>
+  </view>
+</template>

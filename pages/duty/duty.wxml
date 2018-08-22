@@ -1,34 +1,52 @@
 <import src="../../template/template.wxml"/>
-<loading wx:if="{{!isLogin}}">登录中</loading>
-<view id="container">
-	<view id="top">
-    	<view id="month">{{month}}</view>
-	    <view id="year">{{year}}</view>
-	    <view id="showWeek">
-		<view class="week" style='color:rgb(239,50,6);'>日</view>
-      	<view class='week' wx:for="{{weeklist}}" wx:key="item">{{item}}</view>
-    	</view>
+<view id='continer'>
+  <view id='top'>
+    <view id="month">{{month}}</view>
+    <view id="year">{{year}}</view>
+    <view id="showWeek">
+	    <view class="week" style='color:rgb(239,50,6);'>日</view>
+    	<view class='week' wx:for="{{weekArr}}" wx:key="item">{{item}}</view>
   	</view>
-    <!--轮播的skiper，营造无限长的日历效果-->
-  	<swiper id="body" bindchange='changeDate' circular="true">
-    	<swiper-item>
-    		<template is="calendar" data="{{...nowmonth}}" />
-      	</swiper-item>
-    	<swiper-item>
-    		<template is="calendar" data="{{...post}}" />
-      	</swiper-item>
-    	<swiper-item>
-    		<template is="calendar" data="{{...pre}}" />
-        </swiper-item>
-  	</swiper>
-  	<view id="footer">
-  		<view id = "agenda" class="choose">日程</view>
-  		<view class="choose" id="add" bindtap="powerDrawer" data-statu="open">+</view>
-  		<view id = "duty" class="choose" bindtap='changePage'>任务</view>
-  	</view>
+	</view>
+  <template is="rowtemp" data="{{...weekData}}" />
+  <view class='blank2'></view>
+  <view id='date'>{{month}} 月 {{getDate}} 日</view>
+  <scroll-view scroll-y id='middle'>  
+    <view id='list' wx:for='{{datelist}}' wx:key='datelist.dutyname'>
+      <view class='checkview'>
+        <checkbox class='check' checked = '{{item.check}}'color='{{item.color}}'bindtap='changecheck' data-index="{{ index }}">
+          <text class='text'decode="{{true}}" space="{{true}}" style="color:{{item.check?'rgb(232, 234, 236)':'black'}}">&nbsp;&nbsp;{{item.dutyname}}</text>
+        </checkbox>
+        <icon class="remove" type="clear" size="16" catchtap="remove" data-index="{{ index }}"/>
+      </view> 
+    </view>
+  </scroll-view>
+  <view id="footer">
+  	<view id = "agenda" class="choose" bindtap = 'changePage'>日程</view>
+  	<view class="choose" id="add" bindtap="powerDrawer"data-statu="open">+</view>
+  	<view id = "duty" class="choose">任务</view>
+  </view>
 </view>
-
-
+<!--详情页面-->  
+<view class="drawer_screen" bindtap="powerDrawerDetail" data-statu="close" wx:if="{{showDetailStatus}}"></view>  
+<!--content-->  
+<!--使用animation属性指定需要执行的动画-->  
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showDetailStatus}}">  
+  <view class="drawer_content">  
+    <view class = "chooseAdd" data-status="true" bindtap="changeAdd" style="border-right-width: 2rpx; border-right-style: solid; border-right-color: gray; color: {{showChoose? 'rgb(62,168,244)':'black'}};">日程</view>
+    <view class = "chooseAdd" data-status="false" bindtap="changeAdd" style="color: {{showChoose? 'black':'rgb(62,168,244)'}};">任务</view>
+    <view wx:if="{{!showChoose}}">
+      <scroll-view scroll-y style="height: 300rpx;">
+        <view wx:for="{{agendaList}}" wx:key="item.name" class = 'agendaRow'>
+          <view style = "width: 80%; color: {{item.color}}; float: left; text-align: center;overflow:hidden">{{item.name}}</view>
+          <view bindtap = "deleteA" data-name = "{{item}}" style = "width: 20%; color: white; background: rgb(246,49,62); float: left; text-align: center; border-radius: 10rpx; font-size: 35rpx;height: 50rpx;">删除</view>
+        </view>
+      </scroll-view>
+      <view class="btn_ok" bindtap="powerDrawer" data-statu="close">确定</view>  
+    </view>
+    <view wx:if="{{showChoose}}"></view>
+  </view>  
+  </view>
 <!--添加页面-->  
 <view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>  
 <!--content-->  
@@ -38,7 +56,7 @@
   	<view class = "chooseAdd" data-status="true" bindtap="changeAdd" style="border-right-width: 2rpx; border-right-style: solid; border-right-color: gray; color: {{showChoose? 'rgb(62,168,244)':'black'}};">日程</view>
   	<view class = "chooseAdd" data-status="false" bindtap="changeAdd" style="color: {{showChoose? 'black':'rgb(62,168,244)'}};">任务</view>
   	<view wx:if="{{showChoose}}">
-	    <form bindsubmit='saveEvent' style="float: left;">
+	    <form bindsubmit='saveEventA' style="float: left;">
 	    	<input name='name' placeholder ="日程主题" class="col0" placeholder-style="text-align: center; font-size: 30rpx;" style=" border-radius: 15rpx; text-align: center; border: 2rpx solid; border-color:{{isFocus? 'rgb(62,168,244)':'rgb(125,159,195)'}};" bindfocus='getFocus' bindblur = 'loseFocus'></input>
         <picker name='start' mode="date" class="col0" value="{{startDate}}" start="2015-09-01" end="2050-09-01" bindchange = 'startDate'>  
         	<view class="picker" style="margin-left: 10rpx;font-size: 35rpx;">起始日期 ：<text style="margin-left: 25rpx; color: rgb(62,168,244);">{{startDate}}</text></view>
@@ -58,34 +76,13 @@
 	    </form>
 	   </view>
      <!--以下为添加任务页面-->
-     <view wx:if="{{!showChoose}}">
-     <form bindsubmit='saveEventB' style="float: left;">
+	   <view wx:if="{{!showChoose}}">
+     <form bindsubmit='saveEvent' style="float: left;">
      <view style='height:20rpx;'></view>
-        <input name='dutyname' placeholder ="任务名称" class="col0" placeholder-style="text-align: center; font-size: 30rpx;" style="margin-top: 80rpx; height:100rpx; border-radius: 15rpx; text-align: center; border: 2rpx solid; border-color:{{isFocus? 'rgb(62,168,244)':'rgb(125,159,195)'}};" bindfocus='getFocus' bindblur = 'loseFocus'></input>
+	    	<input name='dutyname' placeholder ="任务名称" class="col0" placeholder-style="text-align: center; font-size: 30rpx;" style="margin-top: 80rpx; height:100rpx; border-radius: 15rpx; text-align: center; border: 2rpx solid; border-color:{{isFocus? 'rgb(62,168,244)':'rgb(125,159,195)'}};" bindfocus='getFocus' bindblur = 'loseFocus'></input>
         <button class="btn_ok" form-type="submit" bindtap="powerDrawer" data-statu="close">确定</button>  
-      </form>
+	    </form>
      </view>
    </view>
 </view>  
 
-<!--详情页面-->  
-<view class="drawer_screen" bindtap="powerDrawerDetail" data-statu="close" wx:if="{{showDetailStatus}}"></view>  
-<!--content-->  
-<!--使用animation属性指定需要执行的动画-->  
-<view animation="{{animationData}}" class="drawer_box" wx:if="{{showDetailStatus}}">  
-  <view class="drawer_content">  
-    <view class = "chooseAdd" data-status="true" bindtap="changeAdd" style="border-right-width: 2rpx; border-right-style: solid; border-right-color: gray; color: {{showChoose? 'rgb(62,168,244)':'black'}};">日程</view>
-    <view class = "chooseAdd" data-status="false" bindtap="changeAdd" style="color: {{showChoose? 'black':'rgb(62,168,244)'}};">任务</view>
-    <view wx:if="{{showChoose}}">
-      <scroll-view scroll-y style="height: 300rpx;">
-        <view wx:for="{{agendaList}}" wx:key="item.name" class = 'agendaRow'>
-          <view style = "width: 80%; color: {{item.color}}; float: left; text-align: center;overflow:hidden">{{item.name}}</view>
-          <view bindtap = "deleteA" data-name = "{{item}}" style = "width: 20%; color: white; background: rgb(246,49,62); float: left; text-align: center; border-radius: 10rpx; font-size: 35rpx;height: 50rpx;">删除</view>
-        </view>
-      </scroll-view>
-      <view class="btn_ok" bindtap="powerDrawerDetail" data-statu="close">确定</view>  
-    </view>
-    <view wx:if="{{!showChoose}}"></view>
-  </view>  
-  
-</view>
